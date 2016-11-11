@@ -31,7 +31,7 @@ const Clock = React.createClass({
 const { totalSeconds } = this.props;
 
         return (
-            <div className="clock">
+            <div className="clock" ref={node => (this.node = node)}>
             <span className="clock-text">
             {this.formatSeconds(totalSeconds)}
             </span>
