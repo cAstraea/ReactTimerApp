@@ -32,5 +32,4 @@ describe('CountDownForm', () => {
 
         expect(spy).toNotHaveBeenCalled();
     });
-
 });
