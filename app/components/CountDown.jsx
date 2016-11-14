@@ -24,7 +24,7 @@ const CountDown = React.createClass({
             }
     },
     startTimer() {
-        this.sdfsdfwwe = setInterval(() => {
+        this.timer = setInterval(() => {
             const newCount = this.state.count - 1;
             const audio = new Audio('http://freewavesamples.com/files/Crash-Cymbal-1.wav');
             if (newCount === 0) {

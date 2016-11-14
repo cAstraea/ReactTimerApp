@@ -2,3 +2,4 @@ node_modules/
 .eslintrc.json
 example-promise.json
 jsconfig.json
+.vscode/
