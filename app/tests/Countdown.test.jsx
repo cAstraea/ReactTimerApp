@@ -33,18 +33,27 @@ describe('CountDown', () => {
                 expect(countdown.state.count).toBe(0);            
             }, 3001);
         });
-    });
 
-    describe('async test with mocha done', () => {
-        let foo = false;
-          before((done) => {
+        it('should pause countdown on paused status', (done) => {
+            const countdown = TestUtils.renderIntoDocument(<CountDown />);
+            countdown.handleSetCountdown(3);
+            countdown.handleStatusChange('paused');
             setTimeout(() => {
-                foo = true;
+                expect(countdown.state.count).toBe(3);
+                expect(countdown.state.countdownStatus).toBe('paused');
                 done();
-            }, 1001);
+            }, 1001);            
         });
-        it('should fail without done', () => {
-            expect(foo).toBe(true);
+
+              it('should reset on stopped status', (done) => {
+            const countdown = TestUtils.renderIntoDocument(<CountDown />);
+            countdown.handleSetCountdown(3);
+            countdown.handleStatusChange('stopped');
+            setTimeout(() => {                
+                expect(countdown.state.countdownStatus).toBe('stopped');
+                 expect(countdown.state.count).toBe(0);
+                done();
+            }, 1001);            
         });
     });
 });
