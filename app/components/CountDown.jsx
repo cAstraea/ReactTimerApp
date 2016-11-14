@@ -11,11 +11,11 @@ const CountDown = React.createClass({
         };
     },
 
+
+
     componentDidUpdate(prevProps, prevState) {
-        
-         
             if (this.state.countdownStatus !== prevState.countdownStatus) {
-                console.log(this.state.countdownStatus, prevState.countdownStatus);
+               
                 switch (this.state.countdownStatus) {
                     case 'started':
                     this.startTimer();
@@ -28,15 +28,24 @@ const CountDown = React.createClass({
                     clearInterval(this.timer);
                     this.timer = undefined;
                     break;                 
+
+                    default:
+                    break;
                 }
             }
     },
+    componentWillUnmount() {
+        clearInterval(this.timer);
+        this.timer = undefined;
+    },
+    
     startTimer() {
         this.timer = setInterval(() => {
             const newCount = this.state.count - 1;
             const audio = new Audio('http://freewavesamples.com/files/Crash-Cymbal-1.wav');
             if (newCount === 0) {
                 audio.play();
+                this.setState({ countdownStatus: 'stopped' });
             }
             this.setState({
                 count: newCount >= 0 ? newCount : 0
@@ -56,6 +65,7 @@ const CountDown = React.createClass({
         });
     },
     render() {
+        console.log('rendered');     
         const { count, countdownStatus } = this.state;
         const renderControlArea = () => {
             if (countdownStatus !== 'stopped') {

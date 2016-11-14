@@ -5,11 +5,15 @@ const Controls = React.createClass({
         countdownStatus: React.PropTypes.string.isRequired,
         onStatusChange: React.PropTypes.func.isRequired
     },
-    onStatusChange(newStatus) {
+
+
+
+        onStatusChange(newStatus) {
         return () => {
             this.props.onStatusChange(newStatus);
         };
     },
+
     render() {
         const { countdownStatus } = this.props;
         const renderStartStopButton = () => {
