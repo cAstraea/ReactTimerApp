@@ -5,6 +5,8 @@ const CountDownForm = React.createClass({
         e.preventDefault();
         const strSeconds = this.refs.seconds.value;
 
+        console.log('input count', $('input').length);
+
     if (/^[0-9]+$/.test(strSeconds)) {
             this.refs.seconds.value = '';
             this.props.onSetCountDown(parseInt(strSeconds, 10));

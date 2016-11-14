@@ -12,8 +12,7 @@ const CountDown = React.createClass({
     },
 
     componentDidUpdate(prevProps, prevState) {
-            if (this.state.countdownStatus !== prevState.countdownStatus) {
-               
+            if (this.state.countdownStatus !== prevState.countdownStatus) {               
                 switch (this.state.countdownStatus) {
                     case 'started':
                     this.startTimer();
@@ -42,7 +41,7 @@ const CountDown = React.createClass({
             const newCount = this.state.count - 1;
             const audio = new Audio('http://freewavesamples.com/files/Crash-Cymbal-1.wav');
             if (newCount === 0) {
-                audio.play();
+               // audio.play();
                 this.setState({ countdownStatus: 'stopped' });
             }
             this.setState({
@@ -62,7 +61,7 @@ const CountDown = React.createClass({
             countdownStatus: newStatus
         });
     },
-    render() {   
+    render() {    
         const { count, countdownStatus } = this.state;
         const renderControlArea = () => {
             if (countdownStatus !== 'stopped') {
@@ -71,7 +70,6 @@ const CountDown = React.createClass({
                   return <CountDownForm onSetCountDown={this.handleSetCountdown} />;            
         };
         return (<div>
-        <h1 className="page-title"> CountDown App </h1>
         <Clock totalSeconds={count} />
 
         {renderControlArea()}
